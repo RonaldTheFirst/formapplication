@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer List</title>
+</head>
+<body>
+    <h1>Customer List</h1>
+    <a href="{% url 'customer_create' %}">Add Customer</a>
+    <ul>
+        {% for customer in customers %}
+            <li>
+                {{ customer.first_name }} {{ customer.last_name }}
+                <a href="{% url 'customer_update' customer.pk %}">Edit</a>
+                <form action="{% url 'customer_delete' customer.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'send_email' %}">Send Email</a>
+</body>
+</html>

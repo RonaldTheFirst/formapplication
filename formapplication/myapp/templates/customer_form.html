@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Form</title>
+</head>
+<body>
+    <h1>Customer Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+</body>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        let isValid = true;
+        document.querySelectorAll('input, textarea').forEach(function(input) {
+            if (!input.value) {
+                isValid = false;
+                alert(input.name + ' is required.');
+            }
+        });
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+    </script>
+    
+</html>
